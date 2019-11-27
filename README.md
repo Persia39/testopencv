@@ -1,2 +1,2 @@
 # testopencv
-test word
+test task
