@@ -2,13 +2,13 @@
 test task
 
 Камера прямо:
-![alt text](img_result/main.png)
+![alt text](https://github.com/Persia39/testopencv/blob/master/img_result/main.PNG)
 
 Поврот камеры влево:
-![alt text](img_result/left.png)
+![alt text](https://github.com/Persia39/testopencv/blob/master/img_result/left.PNG)
 
 Поврот камеры вправо:
-![alt text](img_result/right.png)
+![alt text](https://github.com/Persia39/testopencv/blob/master/img_result/right.PNG)
 
 Поврот камеры вниз:
-![alt text](img_result/bottom.png)
+![alt text](https://github.com/Persia39/testopencv/blob/master/img_result/bottom.PNG)
