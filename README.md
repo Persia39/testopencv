@@ -1,5 +1,5 @@
 # testopencv
-test task
+IDLE QT Creator + OpenCV
 
 Камера прямо:  
 ![alt text](https://github.com/Persia39/testopencv/blob/master/img_result/main.PNG)
