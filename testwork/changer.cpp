@@ -18,8 +18,9 @@ Changer::~Changer()
 void Changer::getLeftImage(int rotation)
 {
     using namespace cv;
-    if(now_degrees-rotation>-91)
+    if(now_degrees-rotation>-91 && now_degrees_y==0)
     {
+        ui->label_error->setText("");
         Mat left_image=Mat::zeros( src.rows, src.cols, src.type() );
         mov_left_part-=pixel_in_degree*rotation;
         mov_right_part-=2*rotation;
@@ -59,6 +60,8 @@ void Changer::getLeftImage(int rotation)
         emit sendRight(left_image);
         }
     }
+    else if(now_degrees_y!=0)
+        ui->label_error->setText("Please make the angle Y equal to 0 degrees");
     ui->label_degree_x->setText(QString::number(now_degrees));
 }
 
@@ -66,8 +69,9 @@ void Changer::getRightImage(int rotation)
 {
     using namespace cv;
 
-    if(now_degrees+rotation<91)
+    if(now_degrees+rotation<91 && now_degrees_y==0)
     {
+        ui->label_error->setText("");
         mov_left_part+=pixel_in_degree*rotation;
         mov_right_part+=2*rotation;
         Mat right_image=Mat::zeros( src.rows, src.cols, src.type() );
@@ -108,14 +112,17 @@ void Changer::getRightImage(int rotation)
             emit sendRight(right_image);
         }
     }
+    else if(now_degrees_y!=0)
+        ui->label_error->setText("Please make the angle Y equal to 0 degrees");
     ui->label_degree_x->setText(QString::number(now_degrees));
 }
 
 void Changer::getBottomImage(int rotation_y)
 {
     using namespace cv;
-    if(now_degrees_y-rotation_y>-91)
+    if(now_degrees_y-rotation_y>-91 && now_degrees==0)
     {
+        ui->label_error->setText("");
         now_degrees_y-=rotation_y;
         mov_up-=pixel_in_degree*rotation_y;
         mov_bot-=2*rotation_y;
@@ -152,17 +159,19 @@ void Changer::getBottomImage(int rotation_y)
             Mat m=findHomography(ptr1,ptr2);
             warpPerspective(src,bottom_image,m,src.size());
         }
-        qDebug()<<QString::number(now_degrees_y);
         ui->label_degree_y->setText(QString::number(now_degrees_y));
         emit sendUp(bottom_image);
     }
+    else if(now_degrees_y!=0)
+        ui->label_error->setText("Please make the angle X equal to 0 degrees");
 }
 
 void Changer::getUpImage(int rotation_y)
 {
     using namespace cv;
-    if(now_degrees_y+rotation_y<91)
+    if(now_degrees_y+rotation_y<91 && now_degrees==0)
     {
+        ui->label_error->setText("");
         now_degrees_y+=rotation_y;
         mov_up+=pixel_in_degree*rotation_y;
         mov_bot+=2*rotation_y;
@@ -201,5 +210,9 @@ void Changer::getUpImage(int rotation_y)
         }
         emit sendUp(up_image);
         ui->label_degree_y->setText(QString::number(now_degrees_y));
+    }
+    else if(now_degrees!=0)
+    {
+        ui->label_error->setText("Please make the angle X equal to 0 degrees");
     }
 }
