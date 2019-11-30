@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>812</width>
-    <height>507</height>
+    <width>735</width>
+    <height>712</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,38 @@
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QLabel" name="image_label">
+     <property name="minimumSize">
+      <size>
+       <width>640</width>
+       <height>480</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>640</width>
+       <height>720</height>
+      </size>
+     </property>
      <property name="text">
       <string>TextLabel</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="maximumSize">
+      <size>
+       <width>16777</width>
+       <height>16</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Enter the angle size in degrees:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="degree"/>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -55,6 +83,20 @@
       <widget class="QPushButton" name="button_open">
        <property name="text">
         <string>Down</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>testk right</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>TeskLeft</string>
        </property>
       </widget>
      </item>
