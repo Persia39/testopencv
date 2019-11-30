@@ -113,6 +113,17 @@ void Changer::getRightImage(int rotation)
 
 void Changer::getBottomImage(int rotation_y)
 {
+    int left_first_part=0,left_sec_part=0,right_first_part=0,right_sec_part=0;
+    if(now_degrees>0)
+    {
+        right_first_part=mov_left_part;
+        right_sec_part=mov_right_part;
+    }
+    else if(now_degrees<0)
+    {
+        left_first_part=mov_left_part;
+        left_sec_part=mov_right_part;
+    }
     using namespace cv;
     if(now_degrees_y-rotation_y>-91)
     {

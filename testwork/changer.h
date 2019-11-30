@@ -13,12 +13,13 @@ class Changer : public QWidget
     Q_OBJECT
 
 public:
-    explicit Changer(cv::Mat img);
+    explicit Changer(QWidget *parent = nullptr,cv::Mat img={});
     ~Changer();
 
 private:
     Ui::Changer *ui;
     int now_degrees,mov_left_part,mov_right_part,now_degrees_y,mov_up,mov_bot;
+    double pixel_in_degree;
     cv:: Mat src;
 signals:
     void sendLeft(cv::Mat);

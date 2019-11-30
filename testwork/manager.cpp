@@ -7,7 +7,8 @@ Manager::Manager(QWidget *parent) :
 {
     ui->setupUi(this);
     src = cv::imread("E:/programs/QTprojects/teskCV/debug/corid.png");
-    chang=new Changer(src);
+    chang=new Changer(this,src);
+    ui->verticalLayout_3->addWidget(chang);
     double mydata[3][3]={{283.3204, 0, 425.59799},{0, 284.35281, 403.94809},{0, 0, 1}};
     cv::Mat cameramatrix=cv::Mat(3,3, CV_64F, mydata);
     double D[14]={-0.001933632, 0.03497972, -0.032952748, 0.0049995692, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -29,15 +30,6 @@ Manager::Manager(QWidget *parent) :
     connect(chang,&Changer::sendUp,this,&Manager::get_images);
     connect(this,&Manager::setBottomImage,chang,&Changer::getBottomImage);
     connect(chang,&Changer::sendBottom,this,&Manager::get_images);
-    //1pixel=0,036 degrees/ camera=45 degrees, 1 degree=26 pixel
-
-    mov_y=0;
-    mov_x=0;
-    src1=cv::Mat::zeros( src.rows, src.cols, src.type() );
-    now_degrees=0;
-    now_degrees_y=0;
-    mov_up=0;
-    mov_bot=0;
 }
 
 Manager::~Manager()
@@ -69,33 +61,4 @@ void Manager::on_right_button_clicked()
 void Manager::on_up_button_clicked()
 {
     emit setUpImage(ui->degree->text().toInt());
-}
-
-void Manager::on_pushButton_clicked()
-{
-    using namespace cv;
-
-
-}
-
-void Manager::on_pushButton_2_clicked()
-{
-    using namespace cv;
-    std::vector <Point2f> ptr1;
-    ptr1.push_back(Point2f(mov_y,0.f+mov_y/2));
-    ptr1.push_back(Point2f(848.f,0.f));
-    ptr1.push_back(Point2f(mov_y+mov_up/2, 800.f-mov_y/2 -mov_up));
-    ptr1.push_back(Point2f(848.f-mov_up/2, 800.f-mov_up));
-
-    std::vector <Point2f> ptr2;
-    ptr2.push_back(Point2f(0.f,0.f));
-    ptr2.push_back(Point2f(848.f,mov_x));
-    ptr2.push_back(Point2f(mov_bot, 800.f));
-    ptr2.push_back(Point2f(848.f-mov_bot, 800.f-mov_x));
-    Mat m=findHomography(ptr1,ptr2);
-    warpPerspective(src,src1,m,src.size());
-    now_degrees_y+=(ui->degree->text().toInt());
-    mov_up+=26*(ui->degree->text().toInt());
-    mov_bot+=10*(ui->degree->text().toInt());
-    cv::imshow("teri",src1);
 }
