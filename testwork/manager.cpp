@@ -3,7 +3,7 @@
 
 Manager::Manager(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::Manager),state(0)
+    ui(new Ui::Manager)
 {
     ui->setupUi(this);
     src = cv::imread("E:/programs/QTprojects/teskCV/debug/corid.png");

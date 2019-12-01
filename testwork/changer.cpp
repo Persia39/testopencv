@@ -60,7 +60,7 @@ void Changer::getLeftImage(int rotation)
         emit sendRight(left_image);
         }
     }
-    else if(now_degrees_y!=0)
+    else if(now_degrees-rotation>-91 && now_degrees_y!=0)
         ui->label_error->setText("Please make the angle Y equal to 0 degrees");
     ui->label_degree_x->setText(QString::number(now_degrees));
 }
@@ -112,7 +112,7 @@ void Changer::getRightImage(int rotation)
             emit sendRight(right_image);
         }
     }
-    else if(now_degrees_y!=0)
+    else if(now_degrees+rotation<91 && now_degrees_y!=0)
         ui->label_error->setText("Please make the angle Y equal to 0 degrees");
     ui->label_degree_x->setText(QString::number(now_degrees));
 }
@@ -162,7 +162,7 @@ void Changer::getBottomImage(int rotation_y)
         ui->label_degree_y->setText(QString::number(now_degrees_y));
         emit sendUp(bottom_image);
     }
-    else if(now_degrees_y!=0)
+    else if(now_degrees_y-rotation_y>-91 && now_degrees_y!=0)
         ui->label_error->setText("Please make the angle X equal to 0 degrees");
 }
 
@@ -211,7 +211,7 @@ void Changer::getUpImage(int rotation_y)
         emit sendUp(up_image);
         ui->label_degree_y->setText(QString::number(now_degrees_y));
     }
-    else if(now_degrees!=0)
+    else if(now_degrees_y+rotation_y<91 && now_degrees!=0)
     {
         ui->label_error->setText("Please make the angle X equal to 0 degrees");
     }

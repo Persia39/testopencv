@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "opencv2/opencv.hpp"
-#include <QDebug>
 namespace Ui {
 class Changer;
 }

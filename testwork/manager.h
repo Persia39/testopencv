@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "changer.h"
-#include <QDebug>
 namespace Ui {
 class Manager;
 }
@@ -31,11 +30,7 @@ signals:
 private:
     Ui::Manager *ui;
     Changer* chang;
-    uint state;
     cv::Mat src;
-    cv::Mat left_img;
-    cv::Mat right_img;
-    cv::Mat bottom_img;
 };
 
 #endif // MANAGER_H
